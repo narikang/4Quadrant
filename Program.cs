@@ -1,8 +1,16 @@
+using _4Quantrant.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<TodoqContext>(options =>
+{
+    options.UseSqlite(builder.Configuration["ConnectionStrings:TodoqConnection"]);
+});
+builder.Services.AddScoped<ITodoRepository, EFTodoRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
