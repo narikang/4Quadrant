@@ -1,8 +1,22 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model Item
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<form method="post">
+    <label asp-for="ItemId">Item ID:</label>
+    <input asp-for="ItemId" />
+    <br />
+    <label asp-for="ItemName">Item Name:</label>
+    <input asp-for="ItemName" />
+    <br />
+    <label asp-for="DueDate">Due Date:</label>
+    <input asp-for="DueDate" />
+    <br />
+    <label asp-for="Priority">Priority:</label>
+    <input asp-for="Priority" />
+    <br />
+    <label asp-for="CategoryId">Category ID:</label>
+    <input asp-for="CategoryId" />
+    <br />
+</form>

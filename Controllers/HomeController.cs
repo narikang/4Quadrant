@@ -6,27 +6,25 @@ namespace _4Quantrant.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private ITodoRepository _repo;
+        public HomeController(ITodoRepository temp)
         {
-            _logger = logger;
+            _repo = temp;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var firstItem = _repo.Items.FirstOrDefault();
+
+            if (firstItem == null)
+            {
+                // Handle the case when the database is empty
+                ViewData["Message"] = "No items found in the database.";
+                return View();
+            }
+
+            return View(firstItem);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
