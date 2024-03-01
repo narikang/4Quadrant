@@ -1,5 +1,6 @@
 using _4Quantrant.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace _4Quantrant.Controllers
@@ -12,18 +13,26 @@ namespace _4Quantrant.Controllers
             _repo = temp;
         }
 
+        /* ViewBag.Items = _repo.Items
+               .ToList();
+
+           return View();*/
         public IActionResult Index()
         {
-            var firstItem = _repo.Items.FirstOrDefault();
+           var items = _repo.Items;
 
-            if (firstItem == null)
-            {
-                // Handle the case when the database is empty
-                ViewData["Message"] = "No items found in the database.";
-                return View();
-            }
+             if (items == null || items.Count == 0)
+             {
+                 ViewData["Message"] = "No items found in the database.";
+                 return View();
+             }
 
-            return View(firstItem);
+             return View(items);
+          
+        }
+        public IActionResult Add()
+        {
+            return View();
         }
 
     }
