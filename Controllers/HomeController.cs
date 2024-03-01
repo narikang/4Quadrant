@@ -1,32 +1,39 @@
 using _4Quantrant.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace _4Quantrant.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private ITodoRepository _repo;
+        public HomeController(ITodoRepository temp)
         {
-            _logger = logger;
+            _repo = temp;
         }
 
+        /* ViewBag.Items = _repo.Items
+               .ToList();
+
+           return View();*/
         public IActionResult Index()
         {
-            return View();
-        }
+           var items = _repo.Items;
 
-        public IActionResult Privacy()
+             if (items == null || items.Count == 0)
+             {
+                 ViewData["Message"] = "No items found in the database.";
+                 return View();
+             }
+
+             return View(items);
+          
+        }
+        public IActionResult Add()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
