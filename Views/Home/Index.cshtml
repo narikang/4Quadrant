@@ -3,6 +3,7 @@
 }
 @model Item
 
+
 <form method="post">
     <label asp-for="ItemId">Item ID:</label>
     <input asp-for="ItemId" />
@@ -20,3 +21,83 @@
     <input asp-for="CategoryId" />
     <br />
 </form>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+<div class="matrix">
+    <div class="quadrant urgent-important">
+        <h2>Urgent & Important</h2>
+        <div class="task-container">
+            @foreach (var task in Model.Where(t => /* Filter tasks for Urgent & Important */).ToList())
+            {
+                <div class="task">
+                    @task
+                    <div class="edit-delete-buttons">
+                        <button onclick="editTask('@task')">Edit</button>
+                        <button onclick="deleteTask('@task')">Delete</button>
+                    </div>
+                </div>
+            }
+
+    
+</div>
+</div>
+    <div class="quadrant not-urgent-important">
+        <h2>Not Urgent & Important</h2>
+        <div class="task-container">
+            @foreach (var task in Model.Where(t => /* Filter tasks for not Urgent & Important */).ToList())
+            {
+                <div class="task">
+                    @task
+                    <div class="edit-delete-buttons">
+                        <button onclick="editTask('@task')">Edit</button>
+                        <button onclick="deleteTask('@task')">Delete</button>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+
+    <div class="quadrant urgent-not-important">
+        <h2>Urgent & Not Important</h2>
+        <div class="task-container">
+            @foreach (var task in Model.Where(t => /* Filter tasks for Urgent & not Important */).ToList())
+            {
+                <div class="task">
+                    @task
+                    <div class="edit-delete-buttons">
+                        <button onclick="editTask('@task')">Edit</button>
+                        <button onclick="deleteTask('@task')">Delete</button>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+    <div class="quadrant not-urgent-not-important">
+        <h2>Not Urgent & Not Important</h2>
+        <div class="task-container">
+            @foreach (var task in Model.Where(t => /* Filter tasks for Not Urgent & NotImportant */).ToList())
+            {
+                <div class="task">
+                    @task
+                    <div class="edit-delete-buttons">
+                        <button onclick="editTask('@task')">Edit</button>
+                        <button onclick="deleteTask('@task')">Delete</button>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+
+</div>
+

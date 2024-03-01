@@ -20,3 +20,57 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.grid {
+    border: 1px solid red;
+    display: grid;
+    grid-template-columns: 20% 40% 40%;
+    grid-auto-rows: 30vh 30vh 30vh;
+}
+
+.item {
+    border: 1px solid black;
+}
+
+/*Qudrants CSS*/
+.matrix {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.quadrant {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.urgent-important {
+    background-color: #FF5252; /* Red */
+}
+
+.not-urgent-important {
+    background-color: #4CAF50; /* Green */
+}
+
+.urgent-not-important {
+    background-color: #FFD600; /* Yellow */
+}
+
+.not-urgent-not-important {
+    background-color: #64B5F6; /* Blue */
+}
+
+.task-container {
+    margin-top: 10px;
+}
+
+.task {
+    margin-bottom: 10px;
+}
+
+.edit-delete-buttons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
