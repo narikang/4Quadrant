@@ -1,4 +1,4 @@
-namespace Mission08_Team0405.Models
+namespace _4Quantrant.Models
 {
     public class ErrorViewModel
     {

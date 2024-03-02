@@ -20,3 +20,127 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.grid {
+    border: 1px solid red;
+    display: grid;
+    grid-template-columns: 20% 40% 40%;
+    grid-auto-rows: 30vh 30vh 30vh;
+}
+
+.item {
+    border: 1px solid black;
+}
+
+/*Qudrants CSS*/
+.matrix {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+}
+
+.quadrant {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.urgent-important {
+    background-color: #FF5252; /* Red */
+}
+
+.not-urgent-important {
+    background-color: #4CAF50; /* Green */
+}
+
+.urgent-not-important {
+    background-color: #FFD600; /* Yellow */
+}
+
+.not-urgent-not-important {
+    background-color: #64B5F6; /* Blue */
+}
+
+.task-container {
+    margin-top: 10px;
+    background-color: navajowhite;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+    .task:hover {
+        background-color: #f5f5f5;
+    }
+
+    .task p {
+        margin: 0;
+    }
+
+edit-delete-buttons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+/*Create Table --> used in Intex too :) */
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+    .content-table thead tr {
+        background-color: #008B8B;
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .content-table th,
+    .content-table td {
+        padding: 12px 15px;
+    }
+
+    .content-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Add a smooth transition effect */
+        background-color: #fff; /* Set the background color to white */
+    }
+
+        .content-table tbody tr:hover {
+            background-color: #e0f7fa; /* Change the background color on hover */
+        }
+
+        .content-table tbody tr:last-of-type {
+            border-bottom: auto solid #009879;
+        }
+
+        .content-table tbody tr.active-row {
+            font-weight: bold;
+            color: black;
+        }
+
+
+.q {
+    border: 2px solid #0666a3; /* Set the border color to your preference */
+    padding: 10px; /* Add some padding to the section */
+    margin-bottom: 20px; /* Adjust the margin as needed */
+    font-weight: bold;
+    background-color: #add8e6;
+    width: 100%;
+}

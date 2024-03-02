@@ -1,32 +1,87 @@
+using _4Quantrant.Models;
 using Microsoft.AspNetCore.Mvc;
-using Mission08_Team0405.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
-namespace Mission08_Team0405.Controllers
+namespace _4Quantrant.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private ITodoRepository _repo;
+        public HomeController(ITodoRepository temp)
         {
-            _logger = logger;
+            _repo = temp;
         }
 
+        /* ViewBag.Items = _repo.Items
+               .ToList();
+
+           return View();*/
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+           //var items = _repo.Items.ToList();
+
+            /*  if (items == null || items.Count == 0)
+              {
+                  ViewData["Message"] = "No items found in the database.";
+                  return View();
+              }
+
+              return View(items);*/
+            var items = _repo.Items.Select(t => _repo.GetItemById(t.ItemId)).ToList();
+          //  return View(tasksWithCategories);
+
+            return View(items);
+
+        }
+        [HttpGet]
+        public IActionResult Add()
+        {
+            ViewBag.Categories = _repo.Categories;
+
+            var newTask = new Item();
+         
+
+            return View("Add", newTask);
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Add(Item newtask)
         {
-            return View();
+            _repo.Add(newtask);
+            return RedirectToAction("Index", newtask);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpGet]
+        public IActionResult Update(int id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var recordToUpdate = _repo.Items.FirstOrDefault(t => t.ItemId == id);
+            ViewBag.Categories = _repo.Categories;
+            return View("Add", recordToUpdate);
         }
+
+        [HttpPost]
+        public IActionResult Update(Item item)
+        {
+            _repo.Update(item);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = _repo.Items.FirstOrDefault(t => t.ItemId == id);
+            ViewBag.Categories = _repo.Categories;
+            return View("Delete", recordToDelete);
+
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Item item)
+        {
+            _repo.Delete(item);
+            return RedirectToAction("Index");
+        }
+
     }
 }
