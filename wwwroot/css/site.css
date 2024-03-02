@@ -91,3 +91,56 @@ edit-delete-buttons {
     bottom: 10px;
     right: 10px;
 }
+
+/*Create Table --> used in Intex too :) */
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+    .content-table thead tr {
+        background-color: #008B8B;
+        color: #ffffff;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .content-table th,
+    .content-table td {
+        padding: 12px 15px;
+    }
+
+    .content-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+        cursor: pointer;
+        transition: background-color 0.3s ease; /* Add a smooth transition effect */
+        background-color: #fff; /* Set the background color to white */
+    }
+
+        .content-table tbody tr:hover {
+            background-color: #e0f7fa; /* Change the background color on hover */
+        }
+
+        .content-table tbody tr:last-of-type {
+            border-bottom: auto solid #009879;
+        }
+
+        .content-table tbody tr.active-row {
+            font-weight: bold;
+            color: black;
+        }
+
+
+.q {
+    border: 2px solid #0666a3; /* Set the border color to your preference */
+    padding: 10px; /* Add some padding to the section */
+    margin-bottom: 20px; /* Adjust the margin as needed */
+    font-weight: bold;
+    background-color: #add8e6;
+    width: 100%;
+}

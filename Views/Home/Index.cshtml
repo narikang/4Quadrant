@@ -1,118 +1,136 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
 @model List<Item>
 
 
 
-<div class="text-center">
-    <h1 class="display-4">Time Management Matrix</h1>
-    
-</div>
-
-
-
-    <div class="quadrant urgent-important">
-        <h2>Urgent & Important</h2>
-
-    @foreach (var x in Model.Where(item => item.Priority == 1 && !item.Completed))
-        {
-        
-                <div class="task">
-                    <!-- Display properties of the task -->
-                    <p>Task: @x.ItemName</p>
-                    <p>Due Date: @x.DueDate</p>
-
-                    <!-- Edit and delete buttons -->
-                <div class="edit-delete-buttons">
-                    <a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a>
-                    <a class="btn btn-info" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a>
-                </div>
-
-                </div>
-
-
-        }
-
-    </div>
-    
-
-
-    <div class="quadrant not-urgent-important">
-        <h2>Not Urgent & Important</h2>
-
-    @foreach (var x in Model.Where(item => item.Priority == 3 && !item.Completed))
-        {
-           
-                <div class="task">
-                    <!-- Display properties of the task -->
-                    <p>Task: @x.ItemName</p>
-                    <p>Due Date: @x.DueDate</p>
-
-                    <!-- Edit and delete buttons -->
-                <div class="edit-delete-buttons">
-                    <a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a>
-                    <a class="btn btn-info" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a>
-                </div>
-
-                </div>
-            
-
-        }
-
-    </div>
-    
-
-    
-    <div class="quadrant urgent-not-important">
-        <h2>Urgent & Not Important</h2>
-
-    @foreach (var x in Model.Where(item => item.Priority == 2 && !item.Completed))
-        {
-            
-                <div class="task">
-                    <!-- Display properties of the task -->
-                    <p>Task: @x.ItemName</p>
-                    <p>Due Date: @x.DueDate</p>
-
-                    <!-- Edit and delete buttons -->
-                <div class="edit-delete-buttons">
-                    <a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a>
-                    <a class="btn btn-info" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a>
-                </div>
-
-                </div>
-            
-        }
-
+<div class="container mt-4">
+    <div class="text-center">
+        <h1 class="display-4">Time Management Matrix</h1>
     </div>
 
-            
+    <div class="matrix">
+        <!-- Urgent & Important -->
+        <div class="quadrant urgent-important">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Urgent & Important</h2>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Task Name</th>
+                                <th>Due Date</th>
+                                <th>Category</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var x in Model.Where(item => item.Priority == 1 && !item.Completed))
+                            {
+                                <tr>
+                                    <td>@x.ItemName</td>
+                                    <td>@x.DueDate</td>
+                                    <td>@(x.Category != null ? x.Category.CategoryName : "N/A")</td>
+                                    <td><a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a></td>
+                                    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
+        <!-- Not Urgent & Important -->
+        <div class="quadrant not-urgent-important">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Not Urgent & Important</h2>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Task Name</th>
+                                <th>Due Date</th>
+                                <th>Category</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var x in Model.Where(item => item.Priority == 3 && !item.Completed))
+                            {
+                                <tr>
+                                    <td>@x.ItemName</td>
+                                    <td>@x.DueDate</td>
+                                    <td>@(x.Category != null ? x.Category.CategoryName : "N/A")</td>
+                                    <td><a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a></td>
+                                    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-    <!-- Not Urgent & Not Important -->
-    <div class="quadrant not-urgent-not-important">
-        <h2>Not Urgent & Not Important</h2>
+        <!-- Urgent & Not Important -->
+        <div class="quadrant urgent-not-important">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Urgent & Not Important</h2>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Task Name</th>
+                                <th>Due Date</th>
+                                <th>Category</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var x in Model.Where(item => item.Priority == 2 && !item.Completed))
+                            {
+                                <tr>
+                                    <td>@x.ItemName</td>
+                                    <td>@x.DueDate</td>
+                                    <td>@(x.Category != null ? x.Category.CategoryName : "N/A")</td>
+                                    <td><a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a></td>
+                                    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-    @foreach (var x in Model.Where(item => item.Priority == 4 && !item.Completed))
-            {
-               
-                        <div class="task">
-                            <!-- Display properties of the task -->
-                            <p>Task: @x.ItemName</p>
-                            <p>Due Date: @x.DueDate</p>
-
-                            <!-- Edit and delete buttons -->
-                                      <div class="edit-delete-buttons">
-                                     <a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a>
-                                        <a class="btn btn-info" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a>
-                                        </div>
-
-                         </div>
-                
-                    
-            }
-        
-    </div>
-    
+        <!-- Not Urgent & Not Important -->
+        <div class="quadrant not-urgent-not-important">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Not Urgent & Not Important</h2>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Task Name</th>
+                                <th>Due Date</th>
+                                <th>Category</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var x in Model.Where(item => item.Priority == 4 && !item.Completed))
+                            {
+                                <tr>
+                                    <td>@x.ItemName</td>
+                                    <td>@x.DueDate</td>
+                                    <td>@(x.Category != null ? x.Category.CategoryName : "N/A")</td>
+                                    <td><a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a></td>
+                                    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
