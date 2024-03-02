@@ -10,13 +10,16 @@ public class Item
     [Key]
     public int ItemId { get; set; }
 
-    public string? ItemName { get; set; }
+    [Required]
+    public string ItemName { get; set; }
 
     public string? DueDate { get; set; }
 
-    public int? Priority { get; set; }
+    [Required]
+    public int Priority { get; set; }
 
     [ForeignKey("CategoryId")]
     public int? CategoryId { get; set; }
     public Category? Category { get; set; }
+    public bool Completed { get; set; }
 }

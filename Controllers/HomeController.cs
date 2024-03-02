@@ -40,13 +40,19 @@ namespace _4Quantrant.Controllers
         {
             ViewBag.Categories = _repo.Categories;
 
-            var newTask = new Item();/*
-            {
-                DueDate = DateTime.Today
-            };*/
+            var newTask = new Item();
+         
 
             return View("Add", newTask);
         }
+
+        [HttpPost]
+        public IActionResult Add(Item newtask)
+        {
+            _repo.Add(newtask);
+            return RedirectToAction("Index", newtask);
+        }
+
         [HttpGet]
         public IActionResult Update(int id)
         {
@@ -56,7 +62,7 @@ namespace _4Quantrant.Controllers
         }
 
         [HttpPost]
-        public IActionResult UpdateTask(Item item)
+        public IActionResult Update(Item item)
         {
             _repo.Update(item);
             return RedirectToAction("Index");

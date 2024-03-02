@@ -41,6 +41,9 @@ public partial class TodoqContext : DbContext
                 .HasColumnType("NUMERIC")
                 .HasColumnName("item_name");
             entity.Property(e => e.Priority).HasColumnName("priority");
+            entity.Property(e => e.Completed)
+               .HasColumnType("NUMERIC")
+               .HasColumnName("completed");
         });
 
         OnModelCreatingPartial(modelBuilder);
