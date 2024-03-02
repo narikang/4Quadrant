@@ -6,10 +6,9 @@
 @model Item
 
 <form method="post">
-    <label asp-for="ItemId">Item ID:</label>
-    <input asp-for="ItemId" />
+    <input type="hidden" asp-for="ItemId" />
     <br />
-    <label asp-for="ItemName">Item Name:</label>
+    <label asp-for="ItemName">Task Name:</label>
     <input asp-for="ItemName" />
     <br />
     <label asp-for="DueDate">Due Date:</label>
@@ -23,7 +22,21 @@
         <option value="4">Not Urgent Not Important</option>
     </select>
     <br />
-    <label asp-for="CategoryId">Category ID:</label>
-    <input asp-for="CategoryId" />
+    <label asp-for="CategoryId">Category:</label>
+    <select asp-for="CategoryId">
+        <option value=""></option>
+        @foreach (Category c in ViewBag.Categories)
+        {
+            <option value="@c.CategoryId">@c.CategoryName</option>
+        }
+    </select>
     <br />
+    <label asp-for="Completed">Completed</label>
+    <select asp-for="Completed">
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+    <br />
+
+    <button class="btn btn-info" type="submit">Add New Task</button>
 </form>

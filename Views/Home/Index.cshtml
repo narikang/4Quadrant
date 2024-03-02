@@ -7,8 +7,8 @@
 
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Time Management Matrix</h1>
+    
 </div>
 
 
@@ -16,9 +16,9 @@
     <div class="quadrant urgent-important">
         <h2>Urgent & Important</h2>
 
-        @foreach (var x in Model.Where(item => item.Priority == 1))
+    @foreach (var x in Model.Where(item => item.Priority == 1 && !item.Completed))
         {
-            <div class="task-container">
+        
                 <div class="task">
                     <!-- Display properties of the task -->
                     <p>Task: @x.ItemName</p>
@@ -31,7 +31,7 @@
                 </div>
 
                 </div>
-            </div>
+
 
         }
 
@@ -42,9 +42,9 @@
     <div class="quadrant not-urgent-important">
         <h2>Not Urgent & Important</h2>
 
-        @foreach (var x in Model.Where(item => item.Priority == 3))
+    @foreach (var x in Model.Where(item => item.Priority == 3 && !item.Completed))
         {
-            <div class="task-container">
+           
                 <div class="task">
                     <!-- Display properties of the task -->
                     <p>Task: @x.ItemName</p>
@@ -57,7 +57,7 @@
                 </div>
 
                 </div>
-            </div>
+            
 
         }
 
@@ -68,9 +68,9 @@
     <div class="quadrant urgent-not-important">
         <h2>Urgent & Not Important</h2>
 
-        @foreach (var x in Model.Where(item => item.Priority == 2))
+    @foreach (var x in Model.Where(item => item.Priority == 2 && !item.Completed))
         {
-            <div class="task-container">
+            
                 <div class="task">
                     <!-- Display properties of the task -->
                     <p>Task: @x.ItemName</p>
@@ -83,8 +83,7 @@
                 </div>
 
                 </div>
-            </div>
-
+            
         }
 
     </div>
@@ -95,10 +94,10 @@
     <!-- Not Urgent & Not Important -->
     <div class="quadrant not-urgent-not-important">
         <h2>Not Urgent & Not Important</h2>
-        
-            @foreach (var x in Model.Where(item => item.Priority ==4))
+
+    @foreach (var x in Model.Where(item => item.Priority == 4 && !item.Completed))
             {
-                <div class="task-container">
+               
                         <div class="task">
                             <!-- Display properties of the task -->
                             <p>Task: @x.ItemName</p>
@@ -111,7 +110,7 @@
                                         </div>
 
                          </div>
-                </div>
+                
                     
             }
         
