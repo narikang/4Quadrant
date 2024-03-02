@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace _4Quantrant.Models;
 
-public partial class Item
+public class Item
 {
-    public int? ItemId { get; set; }
+    [Key]
+    public int ItemId { get; set; }
 
     public string? ItemName { get; set; }
 
@@ -13,5 +16,7 @@ public partial class Item
 
     public int? Priority { get; set; }
 
+    [ForeignKey("CategoryId")]
     public int? CategoryId { get; set; }
+    public Category? Category { get; set; }
 }
