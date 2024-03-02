@@ -12,96 +12,108 @@
 </div>
 
 
-<div class="matrix">
-    <!-- Urgent & Important -->
+
     <div class="quadrant urgent-important">
         <h2>Urgent & Important</h2>
-        <div class="task-container">
-            @foreach (var x in Model)
-            {
-                @if ( x.Priority == 1)
-                {
-                    <div class="task">
-                        <!-- Display properties of the task -->
-                        <p>Item Name: @x.ItemName</p>
-                        <p>Due Date: @x.DueDate</p>
-                        <p>Priority: @x.Priority</p>
-                        <p>Category ID: @x.CategoryId</p>
 
-                        <!-- Edit and delete buttons -->
-                       
-                    </div>
-                }
-            }
-        </div>
+        @foreach (var x in Model.Where(item => item.Priority == 1))
+        {
+            <div class="task-container">
+                <div class="task">
+                    <!-- Display properties of the task -->
+                    <p>Task: @x.ItemName</p>
+                    <p>Due Date: @x.DueDate</p>
+
+                    <!-- Edit and delete buttons -->
+                <div class="edit-delete-buttons">
+                    <a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a>
+                    <a class="btn btn-info" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a>
+                </div>
+
+                </div>
+            </div>
+
+        }
+
     </div>
+    
 
-    <!-- Not Urgent & Important -->
+
     <div class="quadrant not-urgent-important">
         <h2>Not Urgent & Important</h2>
-        <div class="task-container">
-            @foreach(var x in Model)
-            {
-                @if (x != null && x.Priority == 3)
-                {
-                    <div class="task">
-                        <!-- Display properties of the task -->
-                        <p>Item Name: @x.ItemName</p>
-                        <p>Due Date: @x.DueDate</p>
-                        <p>Priority: @x.Priority</p>
-                        <p>Category ID: @x.CategoryId</p>
 
-                        <!-- Edit and delete buttons -->
-                        
-                    </div>
-                }
-            }
-        </div>
+        @foreach (var x in Model.Where(item => item.Priority == 3))
+        {
+            <div class="task-container">
+                <div class="task">
+                    <!-- Display properties of the task -->
+                    <p>Task: @x.ItemName</p>
+                    <p>Due Date: @x.DueDate</p>
+
+                    <!-- Edit and delete buttons -->
+                <div class="edit-delete-buttons">
+                    <a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a>
+                    <a class="btn btn-info" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a>
+                </div>
+
+                </div>
+            </div>
+
+        }
+
     </div>
+    
 
-    <!-- Urgent & Not Important -->
+    
     <div class="quadrant urgent-not-important">
         <h2>Urgent & Not Important</h2>
-        <div class="task-container">
-            @foreach(var x in Model)            
-            {
-                @if (x != null && x.Priority == 2)
-                {
-                    <div class="task">
-                        <!-- Display properties of the task -->
-                        <p>Item Name: @x.ItemName</p>
-                        <p>Due Date: @x.DueDate</p>
-                        <p>Priority: @x.Priority</p>
-                        <p>Category ID: @x.CategoryId</p>
 
-                        <!-- Edit and delete buttons -->
-                        
-                    </div>
-                }
-            }
-        </div>
+        @foreach (var x in Model.Where(item => item.Priority == 2))
+        {
+            <div class="task-container">
+                <div class="task">
+                    <!-- Display properties of the task -->
+                    <p>Task: @x.ItemName</p>
+                    <p>Due Date: @x.DueDate</p>
+
+                    <!-- Edit and delete buttons -->
+                <div class="edit-delete-buttons">
+                    <a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a>
+                    <a class="btn btn-info" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a>
+                </div>
+
+                </div>
+            </div>
+
+        }
+
     </div>
+
+            
+
 
     <!-- Not Urgent & Not Important -->
     <div class="quadrant not-urgent-not-important">
         <h2>Not Urgent & Not Important</h2>
-        <div class="task-container">
-          @foreach(var x in Model)
+        
+            @foreach (var x in Model.Where(item => item.Priority ==4))
             {
-                @if (x != null && x.Priority == 4)
-                    {
+                <div class="task-container">
                         <div class="task">
                             <!-- Display properties of the task -->
-                            <p>Item Name: @x.ItemName</p>
+                            <p>Task: @x.ItemName</p>
                             <p>Due Date: @x.DueDate</p>
-                            <p>Priority: @x.Priority</p>
-                            <p>Category ID: @x.CategoryId</p>
 
                             <!-- Edit and delete buttons -->
-                            
-                        </div>
-                    }
+                                      <div class="edit-delete-buttons">
+                                     <a class="btn btn-info" asp-controller="Home" asp-action="Update" asp-route-id="@x.ItemId">Edit</a>
+                                        <a class="btn btn-info" asp-controller="Home" asp-action="Delete" asp-route-id="@x.ItemId">Delete</a>
+                                        </div>
+
+                         </div>
+                </div>
+                    
             }
-        </div>
+        
     </div>
-</div>
+    
